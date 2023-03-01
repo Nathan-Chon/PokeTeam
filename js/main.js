@@ -8,8 +8,8 @@ search.addEventListener('click', function (event) {
   xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + input);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    console.log('xhr.status', xhr.status);
-    console.log('xhr.repsonse', xhr.response);
+    // console.log('xhr.status', xhr.status);
+    // console.log('xhr.repsonse', xhr.response);
   });
   xhr.send();
 });
