@@ -1,0 +1,64 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+header {
+  background-color: #f04037;
+  width: 100%;
+  height: 3rem;
+  position: fixed;
+  z-index: 1;
+}
+
+.nav-title {
+  position: absolute;
+  top: 13px;
+  color: white;
+  font-size: larger;
+}
+
+.nav-search {
+  position: absolute;
+  top: 13px;
+  right: 40vw;
+  color: white;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.nav-party {
+  position: absolute;
+  top: 13px;
+  right: 25vw;
+  color: white;
+  font-size: larger;
+  cursor: pointer;
+}
+
+.nav-party :hover {
+  cursor: pointer;
+}
+
+.nav-search :hover {
+  cursor: pointer;
+}
+
+.search-icon {
+  margin-left: 5px;
+}
+
+.search-title {
+  margin-top: 6rem;
+}
+
+.search-align,
+.search-title-align {
+  display: flex;
+  justify-content: center;
+}
