@@ -13,3 +13,18 @@ search.addEventListener('click', function (event) {
   });
   xhr.send();
 });
+
+var searchTab = document.querySelector('.search-tab');
+var partyTab = document.querySelector('.party-tab');
+var searchButton = document.querySelector('.nav-search');
+var partyButton = document.querySelector('.nav-party');
+
+searchButton.addEventListener('click', function (event) {
+  searchTab.classList.remove('hidden');
+  partyTab.classList.add('hidden');
+});
+
+partyButton.addEventListener('click', function (event) {
+  searchTab.classList.add('hidden');
+  partyTab.classList.remove('hidden');
+});
