@@ -1,5 +1,6 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.1rem;
 }
 
 .nav-bar {
@@ -65,7 +66,57 @@ header {
 }
 
 input {
-  padding: 6px 5px 6px 7px;
+  padding: 6px 10px 6px 9px;
   border-radius: 5px;
   border: 1px solid #6c757d;
+}
+
+.search-add-member {
+  background-color: #fbd2d0;
+  height: 400px;
+  width: 300px;
+  margin: 5rem auto;
+  border-radius: 20px;
+}
+
+.search-img {
+  height: 250px;
+  width: 250px;
+}
+
+.image-align {
+  text-align: center;
+}
+
+.image-title {
+  text-transform: capitalize;
+  margin-top: 2rem;
+}
+
+.add-image-icon {
+  color: white;
+  background-color: #f04037;
+  border-radius: 50%;
+  height: 37px;
+  width: 37px;
+  padding: 2.3px 0 2px 2.5px;
+  position: relative;
+  right: -250px;
+  top: -287px;
+}
+
+.add-image-icon:hover {
+  cursor: pointer;
+}
+
+.party-title {
+  margin-top: 5rem;
+}
+
+.party-tab {
+  text-align: center;
+}
+
+.party-none {
+  margin-top: 2rem;
 }

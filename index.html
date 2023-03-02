@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -26,22 +29,33 @@
     <div class="search-tab">
       <div class="search-title-align">
         <div class="row">
-          <div class="col-full">
+          <div class="column-full">
             <h2 class="search-title">PokéSearch</h2>
           </div>
         </div>
       </div>
       <div class="search-align">
         <div class="row">
-          <div class="col-full">
+          <div class="column-full">
             <input type="text" class="search" placeholder="Enter Pokémon Name">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
           </div>
         </div>
       </div>
+      <div class="search-add-member hidden">
+        <div class="row image-align">
+          <div class="img-name">
+          </div>
+        </div>
+      </div>
     </div>
     <div class="party-tab hidden">
-
+      <div class="row">
+        <div class="column-full">
+          <h2 class="party-title">Party</h2>
+          <p class="party-none">No Pokèmon Have been added</p>
+        </div>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
