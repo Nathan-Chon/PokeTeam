@@ -6,10 +6,10 @@ var data = {
 
 window.addEventListener('beforeunload', function (event) {
   var formJSON = JSON.stringify(data);
-  localStorage.setItem('javascript-local-storage', formJSON);
+  localStorage.setItem('party-local-storage', formJSON);
 });
 
-var dataInJSON = localStorage.getItem('javascript-local-storage');
+var dataInJSON = localStorage.getItem('party-local-storage');
 if (dataInJSON !== null) {
   data = JSON.parse(dataInJSON);
 }
