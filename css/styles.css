@@ -1,5 +1,6 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 0.1rem;
 }
 
 .nav-bar {
@@ -65,7 +66,7 @@ header {
 }
 
 input {
-  padding: 6px 5px 6px 7px;
+  padding: 6px 10px 6px 9px;
   border-radius: 5px;
   border: 1px solid #6c757d;
 }
@@ -100,10 +101,22 @@ input {
   width: 37px;
   padding: 3px;
   position: relative;
-  right: -120px;
-  top: -70px;
+  right: -250px;
+  top: -287px;
 }
 
 .add-image-icon:hover {
   cursor: pointer;
+}
+
+.party-title {
+  margin-top: 5rem;
+}
+
+.party-tab {
+  text-align: center;
+}
+
+.party-none {
+  margin-top: 2rem;
 }

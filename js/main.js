@@ -1,6 +1,7 @@
 var search = document.querySelector('.search-icon');
 var searchInput = document.querySelector('.search');
 var $imageName = document.querySelector('.img-name');
+var $searchAddMember = document.querySelector('.search-add-member');
 
 search.addEventListener('click', function (event) {
   event.preventDefault();
@@ -10,6 +11,7 @@ search.addEventListener('click', function (event) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     if (xhr.status === 200) {
+      $searchAddMember.classList.remove('hidden');
       var $imageTitle = document.createElement('h2');
       $imageTitle.setAttribute('class', 'image-title');
       $imageTitle.textContent = input;
@@ -24,6 +26,10 @@ search.addEventListener('click', function (event) {
       var $addButtonListener = document.querySelector('.add-image-icon');
       $addButtonListener.addEventListener('click', function (event) {
         data.entries.push(xhr.response);
+        $searchAddMember.classList.add('hidden');
+        $imageTitle.remove();
+        $addButton.remove();
+        $image.remove();
       });
     }
     // console.log('xhr.status', xhr.status);
