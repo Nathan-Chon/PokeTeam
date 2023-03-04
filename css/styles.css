@@ -149,35 +149,13 @@ input {
   text-transform: capitalize;
 }
 
-.moves {
-  outline: 2px solid green;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 200px;
+.move-holder-container {
+  display: flex;
+  justify-content: space-between;
 }
 
-.move-title {
-  width: 400px;
+.move-and-level {
+  display: flex;
+  justify-content: space-between;
   font-weight: bold;
-  text-align: right;
-  padding-right: 5px;
-  outline: 2px solid green;
-  position: absolute;
-}
-
-.level-numbers {
-  outline: 2px solid green;
-  position: absolute;
-  width: 2px;
-  bottom: 0;
-}
-
-.level-title {
-  float: left inline-start;
-  font-weight: bold;
-  outline: 2px solid green;
-  width: 400px;
-  text-align: left;
-  position: absolute;
 }

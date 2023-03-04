@@ -109,47 +109,42 @@ function renderPokemon(entry) {
   $type.setAttribute('class', 'types');
   $pokemonGroup.appendChild($type);
 
+  var $moveAndLevel = document.createElement('div');
+  $moveAndLevel.setAttribute('class', 'move-and-level');
+  $pokemonGroup.appendChild($moveAndLevel);
+
   var $levelTitle = document.createElement('p');
   $levelTitle.setAttribute('class', 'level-title');
   $levelTitle.textContent = 'Level:';
-  $pokemonGroup.appendChild($levelTitle);
+  $moveAndLevel.appendChild($levelTitle);
   var $moveTitle = document.createElement('p');
   $moveTitle.setAttribute('class', 'move-title');
   $moveTitle.textContent = 'Moves:';
-  $pokemonGroup.appendChild($moveTitle);
-
-  var $levels = document.createElement('p');
-  $levels.setAttribute('class', 'level-numbers');
-  var array = [];
-  for (var i = 0; i < entry.moves.length; i++) {
-    if (entry.moves[i].version_group_details[0].level_learned_at > 0) {
-      array.push(parseInt(entry.moves[i].version_group_details[0].level_learned_at));
-    }
-  }
-  array.sort(function (a, b) {
-    if (a > b) return 1;
-    if (a < b) return -1;
-    return 0;
-  });
-  var string = array.join(' \n ');
-  $levels.textContent = string;
-  $pokemonGroup.appendChild($levels);
+  $moveAndLevel.appendChild($moveTitle);
 
   var $moves = document.createElement('p');
   $moves.setAttribute('class', 'moves');
   var array1 = [];
   for (var l = 0; l < entry.moves.length; l++) {
     if (entry.moves[l].version_group_details[0].level_learned_at > 0) {
-      array1.push(entry.moves[l].move.name);
+      array1.push({ name: entry.moves[l].move.name, level: entry.moves[l].version_group_details[0].level_learned_at });
     }
   }
   array1.sort(function (a, b) {
-    if (a > b) return 1;
-    if (a < b) return -1;
-    return 0;
+    return a.level - b.level;
   });
-  var string1 = array1.join(' \r\n ');
-  $moves.textContent = string1;
+  for (var i = 0; i < array1.length; i++) {
+    // outer div
+    var $moveHolder = document.createElement('div');
+    $moveHolder.setAttribute('class', 'move-holder-container');
+    var $level = document.createElement('div');
+    var $name = document.createElement('div');
+    $level.textContent = array1[i].level;
+    $name.textContent = array1[i].name;
+    $moveHolder.appendChild($level);
+    $moveHolder.appendChild($name);
+    $moves.appendChild($moveHolder);
+  }
   $pokemonGroup.appendChild($moves);
 }
 
