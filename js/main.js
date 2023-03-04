@@ -4,6 +4,7 @@ var $imageName = document.querySelector('.img-name');
 var $searchAddMember = document.querySelector('.search-add-member');
 var dataResponse;
 var $partyMembers = document.querySelector('.party-members');
+var $partyNone = document.querySelector('.party-none');
 
 search.addEventListener('click', function (event) {
   event.preventDefault();
@@ -19,25 +20,8 @@ search.addEventListener('click', function (event) {
       pokemonAdd(xhr.response);
       searchInput.value = '';
     }
-    // console.log('xhr.status', xhr.status);
-    // console.log('xhr.repsonse', xhr.response);
   });
   xhr.send();
-});
-
-var searchTab = document.querySelector('.search-tab');
-var partyTab = document.querySelector('.party-tab');
-var searchButton = document.querySelector('.nav-search');
-var partyButton = document.querySelector('.nav-party');
-
-searchButton.addEventListener('click', function (event) {
-  searchTab.classList.remove('hidden');
-  partyTab.classList.add('hidden');
-});
-
-partyButton.addEventListener('click', function (event) {
-  searchTab.classList.add('hidden');
-  partyTab.classList.remove('hidden');
 });
 
 function pokemonAdd(event) {
@@ -55,6 +39,7 @@ function pokemonAdd(event) {
 }
 
 $imageName.addEventListener('click', function (event) {
+  event.preventDefault();
   if (event.target.tagName === 'I') {
     var $div = event.target.closest('div');
     $div.firstChild.nextSibling.remove();
@@ -62,90 +47,205 @@ $imageName.addEventListener('click', function (event) {
     $div.firstChild.nextSibling.remove();
     $searchAddMember.classList.add('hidden');
     data.entries.push(dataResponse);
-    renderPokemon(data.entries[4]);
+    $partyMembers.replaceChildren();
+    renderPokemon(data.entries);
   }
 });
 
 function renderPokemon(entry) {
-
   var $row = document.createElement('div');
   $row.setAttribute('class', 'row');
   $partyMembers.appendChild($row);
+  for (var h = 0; h < data.entries.length; h++) {
+    if (h % 2 === 0) {
+      var $columnHalf2 = document.createElement('div');
+      $columnHalf2.setAttribute('class', 'column-half');
+      $row.appendChild($columnHalf2);
 
-  var $columnHalf = document.createElement('div');
-  $columnHalf.setAttribute('class', 'column-half');
-  $row.appendChild($columnHalf);
+      var $pokemonGroup2 = document.createElement('div');
+      $pokemonGroup2.setAttribute('class', 'pokemon-group');
+      $columnHalf2.appendChild($pokemonGroup2);
+      var $newTitle2 = document.createElement('h2');
+      $newTitle2.setAttribute('class', 'new-title');
+      $newTitle2.textContent = entry[h].forms[0].name;
+      $pokemonGroup2.appendChild($newTitle2);
+      var $newImage2 = document.createElement('img');
+      $newImage2.setAttribute('class', 'new-image');
+      $newImage2.setAttribute('src', entry[h].sprites.front_default);
+      $pokemonGroup2.appendChild($newImage2);
 
-  var $pokemonGroup = document.createElement('div');
-  $pokemonGroup.setAttribute('class', 'pokemon-group');
-  $columnHalf.appendChild($pokemonGroup);
-  var $newTitle = document.createElement('h2');
-  $newTitle.setAttribute('class', 'new-title');
-  $pokemonGroup.appendChild($newTitle);
-  var $newImage = document.createElement('img');
-  $newImage.setAttribute('class', 'new-image');
-  $newImage.setAttribute('src', entry.sprites.front_default);
-  $pokemonGroup.appendChild($newImage);
+      var $abilitiesTitle2 = document.createElement('p');
+      $abilitiesTitle2.setAttribute('class', 'ability-title');
+      $abilitiesTitle2.textContent = 'Abilities:';
+      $pokemonGroup2.appendChild($abilitiesTitle2);
+      var $abilities2 = document.createElement('p');
+      for (var j = 0; j < entry[h].abilities.length; j++) {
+        $abilities2.textContent += entry[h].abilities[j].ability.name + ' ';
+      }
+      $abilities2.setAttribute('class', 'abilities');
+      $pokemonGroup2.appendChild($abilities2);
 
-  var $abilitiesTitle = document.createElement('p');
-  $abilitiesTitle.setAttribute('class', 'ability-title');
-  $abilitiesTitle.textContent = 'Abilities:';
-  $pokemonGroup.appendChild($abilitiesTitle);
-  var $abilities = document.createElement('p');
-  for (var j = 0; j < entry.abilities.length; j++) {
-    $abilities.textContent += entry.abilities[j].ability.name + ' ';
-  }
-  $abilities.setAttribute('class', 'abilities');
-  $pokemonGroup.appendChild($abilities);
+      var $typeTitle2 = document.createElement('p');
+      $typeTitle2.setAttribute('class', 'type-title');
+      $typeTitle2.textContent = 'Type:';
+      $pokemonGroup2.appendChild($typeTitle2);
+      var $type2 = document.createElement('p');
+      for (var k = 0; k < entry[h].types.length; k++) {
+        $type2.textContent += entry[h].types[k].type.name + ' ';
+      }
+      $type2.setAttribute('class', 'types');
+      $pokemonGroup2.appendChild($type2);
 
-  var $typeTitle = document.createElement('p');
-  $typeTitle.setAttribute('class', 'type-title');
-  $typeTitle.textContent = 'Type:';
-  $pokemonGroup.appendChild($typeTitle);
-  var $type = document.createElement('p');
-  for (var k = 0; k < entry.types.length; k++) {
-    $type.textContent += entry.types[k].type.name + ' ';
-  }
-  $type.setAttribute('class', 'types');
-  $pokemonGroup.appendChild($type);
+      var $moveAndLevel2 = document.createElement('div');
+      $moveAndLevel2.setAttribute('class', 'move-and-level');
+      $pokemonGroup2.appendChild($moveAndLevel2);
 
-  var $moveAndLevel = document.createElement('div');
-  $moveAndLevel.setAttribute('class', 'move-and-level');
-  $pokemonGroup.appendChild($moveAndLevel);
+      var $levelTitle2 = document.createElement('p');
+      $levelTitle2.setAttribute('class', 'level-title');
+      $levelTitle2.textContent = 'Level:';
+      $moveAndLevel2.appendChild($levelTitle2);
+      var $moveTitle2 = document.createElement('p');
+      $moveTitle2.setAttribute('class', 'move-title');
+      $moveTitle2.textContent = 'Moves:';
+      $moveAndLevel2.appendChild($moveTitle2);
 
-  var $levelTitle = document.createElement('p');
-  $levelTitle.setAttribute('class', 'level-title');
-  $levelTitle.textContent = 'Level:';
-  $moveAndLevel.appendChild($levelTitle);
-  var $moveTitle = document.createElement('p');
-  $moveTitle.setAttribute('class', 'move-title');
-  $moveTitle.textContent = 'Moves:';
-  $moveAndLevel.appendChild($moveTitle);
+      var $moves2 = document.createElement('p');
+      $moves2.setAttribute('class', 'moves');
+      var array2 = [];
+      for (var i = 0; i < entry[h].moves.length; i++) {
+        if (entry[h].moves[i].version_group_details[0].level_learned_at > 0) {
+          array2.push({ name2: entry[h].moves[i].move.name, level2: entry[h].moves[i].version_group_details[0].level_learned_at });
+        }
+      }
+      array2.sort(function (a, b) {
+        return a.level2 - b.level2;
+      });
+      for (var l = 0; l < array2.length; l++) {
+        var $moveHolder2 = document.createElement('div');
+        $moveHolder2.setAttribute('class', 'move-holder-container');
+        var $level2 = document.createElement('div');
+        var $name2 = document.createElement('div');
+        $level2.textContent = array2[l].level2;
+        $name2.textContent = array2[l].name2;
+        $moveHolder2.appendChild($level2);
+        $moveHolder2.appendChild($name2);
+        $moves2.appendChild($moveHolder2);
+      }
+      $pokemonGroup2.appendChild($moves2);
+    } else if (h % 2 === 1) {
 
-  var $moves = document.createElement('p');
-  $moves.setAttribute('class', 'moves');
-  var array1 = [];
-  for (var l = 0; l < entry.moves.length; l++) {
-    if (entry.moves[l].version_group_details[0].level_learned_at > 0) {
-      array1.push({ name: entry.moves[l].move.name, level: entry.moves[l].version_group_details[0].level_learned_at });
+      var $columnHalf = document.createElement('div');
+      $columnHalf.setAttribute('class', 'column-half');
+      $row.appendChild($columnHalf);
+
+      var $pokemonGroup = document.createElement('div');
+      $pokemonGroup.setAttribute('class', 'pokemon-group');
+      $columnHalf.appendChild($pokemonGroup);
+      var $newTitle = document.createElement('h2');
+      $newTitle.setAttribute('class', 'new-title');
+      $newTitle.textContent = entry[h].forms[0].name;
+      $pokemonGroup.appendChild($newTitle);
+      var $newImage = document.createElement('img');
+      $newImage.setAttribute('class', 'new-image');
+      $newImage.setAttribute('src', entry[h].sprites.front_default);
+      $pokemonGroup.appendChild($newImage);
+
+      var $abilitiesTitle = document.createElement('p');
+      $abilitiesTitle.setAttribute('class', 'ability-title');
+      $abilitiesTitle.textContent = 'Abilities:';
+      $pokemonGroup.appendChild($abilitiesTitle);
+      var $abilities = document.createElement('p');
+      for (var m = 0; m < entry[h].abilities.length; m++) {
+        $abilities.textContent += entry[h].abilities[m].ability.name + ' ';
+      }
+      $abilities.setAttribute('class', 'abilities');
+      $pokemonGroup.appendChild($abilities);
+
+      var $typeTitle = document.createElement('p');
+      $typeTitle.setAttribute('class', 'type-title');
+      $typeTitle.textContent = 'Type:';
+      $pokemonGroup.appendChild($typeTitle);
+      var $type = document.createElement('p');
+      for (var n = 0; n < entry[h].types.length; n++) {
+        $type.textContent += entry[h].types[n].type.name + ' ';
+      }
+      $type.setAttribute('class', 'types');
+      $pokemonGroup.appendChild($type);
+
+      var $moveAndLevel = document.createElement('div');
+      $moveAndLevel.setAttribute('class', 'move-and-level');
+      $pokemonGroup.appendChild($moveAndLevel);
+
+      var $levelTitle = document.createElement('p');
+      $levelTitle.setAttribute('class', 'level-title');
+      $levelTitle.textContent = 'Level:';
+      $moveAndLevel.appendChild($levelTitle);
+      var $moveTitle = document.createElement('p');
+      $moveTitle.setAttribute('class', 'move-title');
+      $moveTitle.textContent = 'Moves:';
+      $moveAndLevel.appendChild($moveTitle);
+
+      var $moves = document.createElement('p');
+      $moves.setAttribute('class', 'moves');
+      var array1 = [];
+      for (var o = 0; o < entry[h].moves.length; o++) {
+        if (entry[h].moves[o].version_group_details[0].level_learned_at > 0) {
+          array1.push({ name: entry[h].moves[o].move.name, level: entry[h].moves[o].version_group_details[0].level_learned_at });
+        }
+      }
+      array1.sort(function (c, d) {
+        return c.level - d.level;
+      });
+      for (var p = 0; p < array1.length; p++) {
+        var $moveHolder = document.createElement('div');
+        $moveHolder.setAttribute('class', 'move-holder-container');
+        var $level = document.createElement('div');
+        var $name = document.createElement('div');
+        $level.textContent = array1[p].level;
+        $name.textContent = array1[p].name;
+        $moveHolder.appendChild($level);
+        $moveHolder.appendChild($name);
+        $moves.appendChild($moveHolder);
+      }
+      $pokemonGroup.appendChild($moves);
     }
   }
-  array1.sort(function (a, b) {
-    return a.level - b.level;
-  });
-  for (var i = 0; i < array1.length; i++) {
-    // outer div
-    var $moveHolder = document.createElement('div');
-    $moveHolder.setAttribute('class', 'move-holder-container');
-    var $level = document.createElement('div');
-    var $name = document.createElement('div');
-    $level.textContent = array1[i].level;
-    $name.textContent = array1[i].name;
-    $moveHolder.appendChild($level);
-    $moveHolder.appendChild($name);
-    $moves.appendChild($moveHolder);
+}
+document.addEventListener('DOMContentLoaded', function (event) {
+  if (data.entries.length > 0) {
+    $partyMembers.replaceChildren();
+    $partyNone.classList.add('hidden');
+    renderPokemon(data.entries);
+  } else if (data.entries.length === 0) {
+    $partyNone.classList.remove('hidden');
   }
-  $pokemonGroup.appendChild($moves);
+  viewSwap(data.view);
+});
+
+var $view = document.querySelectorAll('.view');
+function viewSwap(screenChange) {
+  data.view = screenChange;
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].getAttribute('data-view') === screenChange) {
+      $view[i].classList.remove('hidden');
+    } else {
+      $view[i].classList.add('hidden');
+    }
+  }
 }
 
-// console.log(renderPokemon(data.entries[4]));
+var searchButton = document.querySelector('.nav-search');
+var partyButton = document.querySelector('.nav-party');
+
+searchButton.addEventListener('click', function (event) {
+  viewSwap('search-form');
+});
+
+partyButton.addEventListener('click', function (event) {
+  viewSwap('party-form');
+  if (data.entries.length > 0) {
+    $partyNone.classList.add('hidden');
+  } else if (data.entries.length === 0) {
+    $partyNone.classList.remove('hidden');
+  }
+});
