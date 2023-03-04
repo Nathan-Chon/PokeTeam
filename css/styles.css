@@ -65,10 +65,15 @@ header {
   justify-content: center;
 }
 
+.search-bar {
+  width: 220px;
+}
+
 input {
-  padding: 6px 10px 6px 9px;
+  padding: 6px 0 6px 9px;
   border-radius: 5px;
   border: 1px solid #6c757d;
+  width: 80%;
 }
 
 .search-add-member {
