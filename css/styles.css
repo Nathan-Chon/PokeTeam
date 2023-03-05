@@ -65,10 +65,15 @@ header {
   justify-content: center;
 }
 
+.search-bar {
+  width: 220px;
+}
+
 input {
-  padding: 6px 10px 6px 9px;
+  padding: 6px 0 6px 9px;
   border-radius: 5px;
   border: 1px solid #6c757d;
+  width: 80%;
 }
 
 .search-add-member {
@@ -119,4 +124,49 @@ input {
 
 .party-none {
   margin-top: 2rem;
+}
+
+.pokemon-group {
+  background-color: #fbd2d0;
+  height: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  border: 10px solid white;
+}
+
+.abilities {
+  text-align: left;
+  text-transform: capitalize;
+  text-indent: 5%;
+}
+
+.ability-title {
+  text-align: left;
+  font-weight: bold;
+}
+
+.type-title {
+  text-align: left;
+  font-weight: bold;
+}
+
+.types {
+  text-align: left;
+  text-transform: capitalize;
+  text-indent: 5%;
+}
+
+.move-holder-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.move-and-level {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.new-title {
+  text-transform: capitalize;
 }

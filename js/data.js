@@ -1,7 +1,7 @@
 /* exported data */
 var data = {
   entries: [],
-  view: ''
+  view: 'search-form'
 };
 
 window.addEventListener('beforeunload', function (event) {

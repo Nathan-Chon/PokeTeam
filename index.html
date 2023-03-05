@@ -26,7 +26,7 @@
     </div>
   </header>
   <main class="container">
-    <div class="search-tab">
+    <div class="search-tab view" data-view="search-form">
       <div class="search-title-align">
         <div class="row">
           <div class="column-full">
@@ -36,7 +36,7 @@
       </div>
       <div class="search-align">
         <div class="row">
-          <div class="column-full">
+          <div class="column-full search-bar">
             <input type="text" class="search" placeholder="Enter Pokémon Name">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
           </div>
@@ -49,12 +49,14 @@
         </div>
       </div>
     </div>
-    <div class="party-tab hidden">
+    <div class="party-tab view hidden" data-view="party-form">
       <div class="row">
         <div class="column-full">
           <h2 class="party-title">Party</h2>
           <p class="party-none">No Pokèmon Have been added</p>
         </div>
+      </div>
+      <div class="party-members">
       </div>
     </div>
   </main>
