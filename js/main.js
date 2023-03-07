@@ -69,6 +69,11 @@ function renderPokemon(entry) {
       $newTitle2.setAttribute('class', 'new-title');
       $newTitle2.textContent = entry[h].forms[0].name;
       $pokemonGroup2.appendChild($newTitle2);
+
+      var $addButton = document.createElement('i');
+      $addButton.setAttribute('class', 'fa-solid fa-minus fa-2x remove-image-icon');
+      $pokemonGroup2.appendChild($addButton);
+
       var $newImage2 = document.createElement('img');
       $newImage2.setAttribute('class', 'new-image');
       $newImage2.setAttribute('src', entry[h].sprites.front_default);
@@ -78,6 +83,7 @@ function renderPokemon(entry) {
       $abilitiesTitle2.setAttribute('class', 'ability-title');
       $abilitiesTitle2.textContent = 'Abilities:';
       $pokemonGroup2.appendChild($abilitiesTitle2);
+
       var $abilities2 = document.createElement('p');
       for (var j = 0; j < entry[h].abilities.length; j++) {
         $abilities2.textContent += entry[h].abilities[j].ability.name + ' ';
@@ -145,6 +151,11 @@ function renderPokemon(entry) {
       $newTitle.setAttribute('class', 'new-title');
       $newTitle.textContent = entry[h].forms[0].name;
       $pokemonGroup.appendChild($newTitle);
+
+      var $addButton2 = document.createElement('i');
+      $addButton2.setAttribute('class', 'fa-solid fa-minus fa-2x remove-image-icon');
+      $pokemonGroup.appendChild($addButton2);
+
       var $newImage = document.createElement('img');
       $newImage.setAttribute('class', 'new-image');
       $newImage.setAttribute('src', entry[h].sprites.front_default);
@@ -247,5 +258,17 @@ partyButton.addEventListener('click', function (event) {
     $partyNone.classList.add('hidden');
   } else if (data.entries.length === 0) {
     $partyNone.classList.remove('hidden');
+  }
+});
+
+var $pokeGroup = document.querySelectorAll('pokemon-group');
+
+$pokeGroup.addEventListener('click', function (event) {
+  event.preventDefault();
+  if (event.target.tagName === 'I') {
+    var $div = event.target.closest('div');
+    $div.replaceChildren();
+    $partyMembers.replaceChildren();
+    renderPokemon(data.entries);
   }
 });
