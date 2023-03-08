@@ -5,6 +5,7 @@ var $searchAddMember = document.querySelector('.search-add-member');
 var dataResponse;
 var $partyMembers = document.querySelector('.party-members');
 var $partyNone = document.querySelector('.party-none');
+var removalItem;
 
 search.addEventListener('click', function (event) {
   event.preventDefault();
@@ -261,14 +262,36 @@ partyButton.addEventListener('click', function (event) {
   }
 });
 
-var $pokeGroup = document.querySelectorAll('pokemon-group');
+document.addEventListener('click', function (event) {
+  if (event.target.className === 'fa-solid fa-minus fa-2x remove-image-icon') {
+    var $deleteFunction = document.querySelector('.delete-function');
+    $deleteFunction.classList.remove('hidden');
+    removalItem = event.target.closest('div').parentElement;
+  }
+});
 
-$pokeGroup.addEventListener('click', function (event) {
-  event.preventDefault();
-  if (event.target.tagName === 'I') {
-    var $div = event.target.closest('div');
-    $div.replaceChildren();
-    $partyMembers.replaceChildren();
-    renderPokemon(data.entries);
+var $cancel = document.querySelector('.cancel');
+var $confirm = document.querySelector('.confirm');
+
+$cancel.addEventListener('click', function (event) {
+  var $deleteFunction = document.querySelector('.delete-function');
+  $deleteFunction.classList.add('hidden');
+});
+
+$confirm.addEventListener('click', function (event) {
+  var removalItem2 = removalItem.firstChild;
+  var removalItem3 = removalItem2.firstChild.innerHTML;
+  var updatedArray = [];
+  removalItem.remove();
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].species.name !== removalItem3) {
+      updatedArray.push(data.entries[i]);
+    }
+  }
+  data.entries = updatedArray;
+  var $deleteFunction = document.querySelector('.delete-function');
+  $deleteFunction.classList.add('hidden');
+  if (data.entries.length === 0) {
+    $partyNone.classList.remove('hidden');
   }
 });
