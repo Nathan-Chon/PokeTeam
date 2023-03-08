@@ -75,6 +75,10 @@ function renderPokemon(entry) {
       $addButton.setAttribute('class', 'fa-solid fa-minus fa-2x remove-image-icon');
       $pokemonGroup2.appendChild($addButton);
 
+      var $addStar = document.createElement('i');
+      $addStar.setAttribute('class', 'fa-regular fa-star star-icon');
+      $pokemonGroup2.appendChild($addStar);
+
       var $newImage2 = document.createElement('img');
       $newImage2.setAttribute('class', 'new-image');
       $newImage2.setAttribute('src', entry[h].sprites.front_default);
@@ -156,6 +160,10 @@ function renderPokemon(entry) {
       var $addButton2 = document.createElement('i');
       $addButton2.setAttribute('class', 'fa-solid fa-minus fa-2x remove-image-icon');
       $pokemonGroup.appendChild($addButton2);
+
+      var $addStar2 = document.createElement('i');
+      $addStar2.setAttribute('class', 'fa-regular fa-star star-icon');
+      $pokemonGroup.appendChild($addStar2);
 
       var $newImage = document.createElement('img');
       $newImage.setAttribute('class', 'new-image');
@@ -267,6 +275,22 @@ document.addEventListener('click', function (event) {
     var $deleteFunction = document.querySelector('.delete-function');
     $deleteFunction.classList.remove('hidden');
     removalItem = event.target.closest('div').parentElement;
+  } else if (event.target.className === 'fa-regular fa-star star-icon') {
+    var starItem = event.target.closest('div').firstChild.innerHTML;
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].species.name === starItem) {
+        event.target.nextSibling.setAttribute('src', data.entries[i].sprites.front_shiny);
+      }
+    }
+    event.target.setAttribute('class', 'fa-solid fa-star star-icon');
+  } else if (event.target.className === 'fa-solid fa-star star-icon') {
+    var starItem2 = event.target.closest('div').firstChild.innerHTML;
+    for (var j = 0; j < data.entries.length; j++) {
+      if (data.entries[j].species.name === starItem2) {
+        event.target.nextSibling.setAttribute('src', data.entries[j].sprites.front_default);
+      }
+    }
+    event.target.setAttribute('class', 'fa-regular fa-star star-icon');
   }
 });
 
