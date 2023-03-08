@@ -43,11 +43,11 @@ $imageName.addEventListener('click', function (event) {
   event.preventDefault();
   if (event.target.tagName === 'I') {
     var $div = event.target.closest('div');
-    $div.firstChild.nextSibling.remove();
-    $div.firstChild.nextSibling.remove();
-    $div.firstChild.nextSibling.remove();
+    $div.replaceChildren();
     $searchAddMember.classList.add('hidden');
-    data.entries.push(dataResponse);
+    var pokemon = dataResponse;
+    pokemon.pkmnimage = dataResponse.sprites.front_default;
+    data.entries.push(pokemon);
     $partyMembers.replaceChildren();
     renderPokemon(data.entries);
   }
@@ -77,11 +77,18 @@ function renderPokemon(entry) {
 
       var $addStar = document.createElement('i');
       $addStar.setAttribute('class', 'fa-regular fa-star star-icon');
+
+      if (entry[h].pkmnimage === entry[h].sprites.front_default) {
+        $addStar.setAttribute('class', 'fa-regular fa-star star-icon');
+      } else if (entry[h].pkmnimage === entry[h].sprites.front_shiny) {
+        $addStar.setAttribute('class', 'fa-solid fa-star star-icon');
+      }
+
       $pokemonGroup2.appendChild($addStar);
 
       var $newImage2 = document.createElement('img');
       $newImage2.setAttribute('class', 'new-image');
-      $newImage2.setAttribute('src', entry[h].sprites.front_default);
+      $newImage2.setAttribute('src', entry[h].pkmnimage);
       $pokemonGroup2.appendChild($newImage2);
 
       var $abilitiesTitle2 = document.createElement('p');
@@ -162,12 +169,16 @@ function renderPokemon(entry) {
       $pokemonGroup.appendChild($addButton2);
 
       var $addStar2 = document.createElement('i');
-      $addStar2.setAttribute('class', 'fa-regular fa-star star-icon');
+      if (entry[h].pkmnimage === entry[h].sprites.front_default) {
+        $addStar2.setAttribute('class', 'fa-regular fa-star star-icon');
+      } else if (entry[h].pkmnimage === entry[h].sprites.front_shiny) {
+        $addStar2.setAttribute('class', 'fa-solid fa-star star-icon');
+      }
       $pokemonGroup.appendChild($addStar2);
 
       var $newImage = document.createElement('img');
       $newImage.setAttribute('class', 'new-image');
-      $newImage.setAttribute('src', entry[h].sprites.front_default);
+      $newImage.setAttribute('src', entry[h].pkmnimage);
       $pokemonGroup.appendChild($newImage);
 
       var $abilitiesTitle = document.createElement('p');
@@ -280,6 +291,7 @@ document.addEventListener('click', function (event) {
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].species.name === starItem) {
         event.target.nextSibling.setAttribute('src', data.entries[i].sprites.front_shiny);
+        data.entries[i].pkmnimage = data.entries[i].sprites.front_shiny;
       }
     }
     event.target.setAttribute('class', 'fa-solid fa-star star-icon');
@@ -288,6 +300,7 @@ document.addEventListener('click', function (event) {
     for (var j = 0; j < data.entries.length; j++) {
       if (data.entries[j].species.name === starItem2) {
         event.target.nextSibling.setAttribute('src', data.entries[j].sprites.front_default);
+        data.entries[j].pkmnimage = data.entries[j].sprites.front_default;
       }
     }
     event.target.setAttribute('class', 'fa-regular fa-star star-icon');

@@ -7,6 +7,11 @@
   position: fixed;
   top: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  right: 0;
+  left: 50px;
 }
 
 header {
@@ -18,16 +23,11 @@ header {
 }
 
 .nav-title {
-  position: absolute;
-  top: 14px;
   color: white;
   font-size: larger;
 }
 
 .nav-search {
-  position: absolute;
-  top: 14px;
-  right: 37vw;
   color: #fbd2d0;
   font-size: 15px;
   cursor: pointer;
@@ -35,13 +35,10 @@ header {
 }
 
 .nav-party {
-  position: absolute;
-  top: 13px;
-  right: 25vw;
   color: #fbd2d0;
   font-size: 15px;
   cursor: pointer;
-  margin-right: 9vw;
+  margin-right: 15vw;
 }
 
 .nav-party :hover {
@@ -132,6 +129,18 @@ input {
   margin-top: 5rem;
 }
 
+.pokeball {
+  width: 30px;
+  height: 30px;
+  margin-top: 5rem;
+  margin-left: 5px;
+}
+
+.pokemon-party-title {
+  display: flex;
+  justify-content: center;
+}
+
 .party-tab {
   text-align: center;
 }
@@ -145,7 +154,7 @@ input {
   height: 100%;
   padding: 20px;
   border-radius: 20px;
-  border: 10px solid white;
+  border: 10px solid #f3afad;
   position: relative;
 }
 
@@ -247,4 +256,9 @@ input {
 .new-image {
   height: 200px;
   width: 200px;
+}
+
+body {
+  background-color: #f3afad;
+  width: 100%;
 }
