@@ -3,12 +3,12 @@
   letter-spacing: 0.1rem;
 }
 
-.nav-bar {
-  position: fixed;
-  top: 0;
+body {
+  background-color: #f3afad;
   width: 100%;
 }
 
+/* Nav Bar */
 header {
   background-color: #f04037;
   width: 100%;
@@ -17,17 +17,23 @@ header {
   z-index: 1;
 }
 
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  right: 0;
+  left: 50px;
+}
+
 .nav-title {
-  position: absolute;
-  top: 14px;
   color: white;
   font-size: larger;
 }
 
 .nav-search {
-  position: absolute;
-  top: 14px;
-  right: 40vw;
   color: #fbd2d0;
   font-size: 15px;
   cursor: pointer;
@@ -35,13 +41,10 @@ header {
 }
 
 .nav-party {
-  position: absolute;
-  top: 13px;
-  right: 25vw;
   color: #fbd2d0;
   font-size: 15px;
   cursor: pointer;
-  margin-right: 9vw;
+  margin-right: 15vw;
 }
 
 .nav-party :hover {
@@ -52,6 +55,7 @@ header {
   cursor: pointer;
 }
 
+/* Search Page */
 .search-icon {
   margin-left: 5px;
   color: #6c757d;
@@ -80,10 +84,13 @@ input {
 
 .search-add-member {
   background-color: #fbd2d0;
-  height: 400px;
-  width: 300px;
+  height: 100%;
+  width: 60%;
   margin: 5rem auto;
   border-radius: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .search-img {
@@ -91,46 +98,31 @@ input {
   width: 250px;
 }
 
-.image-align {
-  text-align: center;
-}
-
 .image-title {
   text-transform: capitalize;
   margin-top: 2rem;
+  text-align: center;
 }
 
 .add-image-icon {
-  color: white;
-  background-color: #f04037;
-  border-radius: 50%;
-  height: 37px;
-  width: 37px;
+  color: #f04037;
   padding: 2.3px 0 2px 2.5px;
-  position: relative;
-  right: -250px;
-  top: -287px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
-.remove-image-icon {
-  color: white;
-  background-color: #f04037;
-  border-radius: 50%;
-  height: 37px;
-  width: 37px;
-  padding: 2.3px 0 2px 2.5px;
-  position: relative;
-  right: -200px;
-  top: -130px;
-}
-
-.add-image-icon:hover,
-.remove-image-icon:hover {
-  cursor: pointer;
-}
+/* Party Page */
 
 .party-title {
   margin-top: 5rem;
+}
+
+.pokeball {
+  width: 30px;
+  height: 30px;
+  margin-top: 5rem;
+  margin-left: 5px;
 }
 
 .party-tab {
@@ -146,7 +138,50 @@ input {
   height: 100%;
   padding: 20px;
   border-radius: 20px;
-  border: 10px solid white;
+  border: 10px solid #f3afad;
+  position: relative;
+}
+
+.pokemon-party-title {
+  display: flex;
+  justify-content: center;
+}
+
+.new-title {
+  text-transform: capitalize;
+}
+
+.remove-image-icon {
+  color: #f04037;
+  padding: 2.3px 0 2px 2.5px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.add-image-icon:hover,
+.remove-image-icon:hover {
+  cursor: pointer;
+}
+
+.star-icon {
+  color: yellow;
+  position: absolute;
+  top: 90px;
+  right: 80px;
+}
+
+.new-image {
+  height: 200px;
+  width: 200px;
+}
+
+.ability-title {
+  text-align: left;
+  font-weight: bold;
+  background-color: rgb(255, 163, 113);
+  border-radius: 3px;
+  padding: 4px 2px;
 }
 
 .abilities {
@@ -155,14 +190,12 @@ input {
   text-indent: 5%;
 }
 
-.ability-title {
-  text-align: left;
-  font-weight: bold;
-}
-
 .type-title {
   text-align: left;
   font-weight: bold;
+  background-color: rgb(255, 163, 113);
+  border-radius: 3px;
+  padding: 4px 2px;
 }
 
 .types {
@@ -176,14 +209,17 @@ input {
   justify-content: space-between;
 }
 
+.move-holder-container:nth-of-type(odd) {
+  background-color: #fdc7c4;
+}
+
 .move-and-level {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-}
-
-.new-title {
-  text-transform: capitalize;
+  background-color: rgb(255, 163, 113);
+  border-radius: 3px;
+  padding: 0 5px;
 }
 
 .background-faded {
