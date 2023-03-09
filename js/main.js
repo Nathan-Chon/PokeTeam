@@ -37,6 +37,20 @@ function pokemonAdd(event) {
   $image.setAttribute('class', 'search-img');
   $image.setAttribute('src', event.sprites.front_default);
   $imageName.appendChild($image);
+
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open('GET', 'https://pokeapi.co/api/v2/pokemon-species/' + event.id);
+  xhr2.responseType = 'json';
+  xhr2.addEventListener('load', function () {
+    var $description = document.createElement('p');
+    $description.setAttribute('class', 'description');
+    var descriptionText = xhr2.response.flavor_text_entries[0].flavor_text.replace('\f', '');
+    var descriptionText2 = descriptionText.replace('POKéMON', 'Pokémon');
+    var descriptionText3 = descriptionText2.replace(event.forms[0].name.toUpperCase(), event.forms[0].name.charAt(0).toUpperCase() + event.forms[0].name.slice(1));
+    $description.textContent = descriptionText3;
+    $imageName.appendChild($description);
+  });
+  xhr2.send();
 }
 
 $imageName.addEventListener('click', function (event) {

@@ -104,12 +104,24 @@ input {
   text-align: center;
 }
 
+.img-name {
+  text-align: center;
+}
+
 .add-image-icon {
   color: #f04037;
   padding: 2.3px 0 2px 2.5px;
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.description {
+  margin: 2rem;
+  text-align: start;
+  background-color: #ffe8e7;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* Party Page */
