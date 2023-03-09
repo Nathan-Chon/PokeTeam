@@ -3,6 +3,20 @@
   letter-spacing: 0.1rem;
 }
 
+body {
+  background-color: #f3afad;
+  width: 100%;
+}
+
+/* Nav Bar */
+header {
+  background-color: #f04037;
+  width: 100%;
+  height: 3rem;
+  position: fixed;
+  z-index: 1;
+}
+
 .nav-bar {
   position: fixed;
   top: 0;
@@ -12,14 +26,6 @@
   margin-top: 10px;
   right: 0;
   left: 50px;
-}
-
-header {
-  background-color: #f04037;
-  width: 100%;
-  height: 3rem;
-  position: fixed;
-  z-index: 1;
 }
 
 .nav-title {
@@ -49,6 +55,7 @@ header {
   cursor: pointer;
 }
 
+/* Search Page */
 .search-icon {
   margin-left: 5px;
   color: #6c757d;
@@ -105,25 +112,7 @@ input {
   top: 10px;
 }
 
-.remove-image-icon {
-  color: #f04037;
-  padding: 2.3px 0 2px 2.5px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-.star-icon {
-  color: yellow;
-  position: absolute;
-  top: 90px;
-  right: 80px;
-}
-
-.add-image-icon:hover,
-.remove-image-icon:hover {
-  cursor: pointer;
-}
+/* Party Page */
 
 .party-title {
   margin-top: 5rem;
@@ -134,11 +123,6 @@ input {
   height: 30px;
   margin-top: 5rem;
   margin-left: 5px;
-}
-
-.pokemon-party-title {
-  display: flex;
-  justify-content: center;
 }
 
 .party-tab {
@@ -158,10 +142,38 @@ input {
   position: relative;
 }
 
-.abilities {
-  text-align: left;
+.pokemon-party-title {
+  display: flex;
+  justify-content: center;
+}
+
+.new-title {
   text-transform: capitalize;
-  text-indent: 5%;
+}
+
+.remove-image-icon {
+  color: #f04037;
+  padding: 2.3px 0 2px 2.5px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.add-image-icon:hover,
+.remove-image-icon:hover {
+  cursor: pointer;
+}
+
+.star-icon {
+  color: yellow;
+  position: absolute;
+  top: 90px;
+  right: 80px;
+}
+
+.new-image {
+  height: 200px;
+  width: 200px;
 }
 
 .ability-title {
@@ -170,6 +182,12 @@ input {
   background-color: rgb(255, 163, 113);
   border-radius: 3px;
   padding: 4px 2px;
+}
+
+.abilities {
+  text-align: left;
+  text-transform: capitalize;
+  text-indent: 5%;
 }
 
 .type-title {
@@ -202,10 +220,6 @@ input {
   background-color: rgb(255, 163, 113);
   border-radius: 3px;
   padding: 0 5px;
-}
-
-.new-title {
-  text-transform: capitalize;
 }
 
 .background-faded {
@@ -251,14 +265,4 @@ input {
 .pop-up-buttons {
   display: flex;
   justify-content: space-between;
-}
-
-.new-image {
-  height: 200px;
-  width: 200px;
-}
-
-body {
-  background-color: #f3afad;
-  width: 100%;
 }
