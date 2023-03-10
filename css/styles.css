@@ -104,12 +104,24 @@ input {
   text-align: center;
 }
 
+.img-name {
+  text-align: center;
+}
+
 .add-image-icon {
   color: #f04037;
   padding: 2.3px 0 2px 2.5px;
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+.description {
+  margin: 2rem;
+  text-align: justify;
+  background-color: #ffe8e7;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* Party Page */
@@ -181,7 +193,7 @@ input {
   font-weight: bold;
   background-color: rgb(255, 163, 113);
   border-radius: 3px;
-  padding: 4px 2px;
+  padding: 4px 6px;
 }
 
 .abilities {
@@ -195,7 +207,7 @@ input {
   font-weight: bold;
   background-color: rgb(255, 163, 113);
   border-radius: 3px;
-  padding: 4px 2px;
+  padding: 4px 6px;
 }
 
 .types {
@@ -265,4 +277,49 @@ input {
 .pop-up-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.info-circle {
+  color: rgb(104, 156, 234);
+  position: absolute;
+  top: 250px;
+  left: 50px;
+}
+
+.background-info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+  height: 16rem;
+  box-shadow: 100px 100px 100px 10000vw rgba(0, 0, 0, 0.5);
+  background-color: white;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 10px;
+}
+
+.remove-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.stat-type {
+  text-transform: capitalize;
+}
+
+.info-title {
+  text-transform: capitalize;
+}
+
+.invalid-search {
+  text-align: center;
+  margin-top: 8rem;
 }
