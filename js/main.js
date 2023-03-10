@@ -100,6 +100,10 @@ function renderPokemon(entry) {
 
       $pokemonGroup2.appendChild($addStar);
 
+      var $extraInfo2 = document.createElement('i');
+      $extraInfo2.setAttribute('class', 'fa-sharp fa-solid fa-circle-info info-circle');
+      $pokemonGroup2.appendChild($extraInfo2);
+
       var $newImage2 = document.createElement('img');
       $newImage2.setAttribute('class', 'new-image');
       $newImage2.setAttribute('src', entry[h].pkmnimage);
@@ -189,6 +193,10 @@ function renderPokemon(entry) {
         $addStar2.setAttribute('class', 'fa-solid fa-star star-icon');
       }
       $pokemonGroup.appendChild($addStar2);
+
+      var $extraInfo = document.createElement('i');
+      $extraInfo.setAttribute('class', 'fa-sharp fa-solid fa-circle-info info-circle');
+      $pokemonGroup.appendChild($extraInfo);
 
       var $newImage = document.createElement('img');
       $newImage.setAttribute('class', 'new-image');
@@ -318,6 +326,33 @@ document.addEventListener('click', function (event) {
       }
     }
     event.target.setAttribute('class', 'fa-regular fa-star star-icon');
+  } else if (event.target.className === 'fa-sharp fa-solid fa-circle-info info-circle') {
+    var starItem3 = event.target.closest('div').firstChild.innerHTML;
+    for (var k = 0; k < data.entries.length; k++) {
+      if (data.entries[k].species.name === starItem3) {
+        var $moreInfo = document.querySelector('.more-info');
+        $moreInfo.classList.remove('hidden');
+        var $backgroundInfo = document.querySelector('.background-info');
+        var $infoStats = document.createElement('p');
+        $infoStats.setAttribute('class', 'info-stats');
+        $infoStats.textContent = 'Base Stats';
+        $backgroundInfo.appendChild($infoStats);
+        var $statHolder = document.createElement('div');
+        $statHolder.setAttribute('class', 'stat-holder');
+        for (var l = 0; l < data.entries[k].stats.length; l++) {
+          var $statType = document.createElement('div');
+          $statType.setAttribute('class', 'stat-type');
+          var $value = document.createElement('div');
+          $value.setAttribute('class', 'value-type');
+          $statType.textContent = data.entries[k].stats[l].stat.name;
+          $value.textContent = data.entries[k].stats[l].base_stat;
+          $statHolder.appendChild($statType);
+          $statHolder.appendChild($value);
+
+        }
+        $backgroundInfo.appendChild($statHolder);
+      }
+    }
   }
 });
 

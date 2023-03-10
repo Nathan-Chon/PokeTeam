@@ -193,7 +193,7 @@ input {
   font-weight: bold;
   background-color: rgb(255, 163, 113);
   border-radius: 3px;
-  padding: 4px 2px;
+  padding: 4px 6px;
 }
 
 .abilities {
@@ -207,7 +207,7 @@ input {
   font-weight: bold;
   background-color: rgb(255, 163, 113);
   border-radius: 3px;
-  padding: 4px 2px;
+  padding: 4px 6px;
 }
 
 .types {
@@ -277,4 +277,24 @@ input {
 .pop-up-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.info-circle {
+  color: rgb(104, 156, 234);
+  position: absolute;
+  top: 250px;
+  left: 50px;
+}
+
+.background-info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+  height: 10rem;
+  box-shadow: 100px 100px 100px 10000vw rgba(0, 0, 0, 0.5);
+  background-color: white;
+  border-radius: 5px;
+  z-index: 1000;
 }
