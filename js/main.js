@@ -6,6 +6,7 @@ var dataResponse;
 var $partyMembers = document.querySelector('.party-members');
 var $partyNone = document.querySelector('.party-none');
 var removalItem;
+var $invalidSearch = document.querySelector('.invalid-search');
 
 search.addEventListener('click', function (event) {
   event.preventDefault();
@@ -17,8 +18,13 @@ search.addEventListener('click', function (event) {
   xhr.addEventListener('load', function () {
     dataResponse = xhr.response;
     if (xhr.status === 200) {
+      $imageName.replaceChildren();
+      $invalidSearch.classList.add('hidden');
       $searchAddMember.classList.remove('hidden');
       pokemonAdd(xhr.response);
+      searchInput.value = '';
+    } else {
+      $invalidSearch.classList.remove('hidden');
       searchInput.value = '';
     }
   });
@@ -44,10 +50,15 @@ function pokemonAdd(event) {
   xhr2.addEventListener('load', function () {
     var $description = document.createElement('p');
     $description.setAttribute('class', 'description');
-    var descriptionText = xhr2.response.flavor_text_entries[0].flavor_text.replace('\f', '');
-    var descriptionText2 = descriptionText.replace('POKéMON', 'Pokémon');
-    var descriptionText3 = descriptionText2.replace(event.forms[0].name.toUpperCase(), event.forms[0].name.charAt(0).toUpperCase() + event.forms[0].name.slice(1));
-    $description.textContent = descriptionText3;
+    for (var i = 0; i < xhr2.response.flavor_text_entries.length; i++) {
+      if (xhr2.response.flavor_text_entries[i].language.name === 'en') {
+        var descriptionText = xhr2.response.flavor_text_entries[i].flavor_text;
+      }
+    }
+    var descriptionText2 = descriptionText.replace('\f', '');
+    var descriptionText3 = descriptionText2.replace('POKéMON', 'Pokémon');
+    var descriptionText4 = descriptionText3.replace(event.forms[0].name.toUpperCase(), event.forms[0].name.charAt(0).toUpperCase() + event.forms[0].name.slice(1));
+    $description.textContent = descriptionText4;
     $imageName.appendChild($description);
   });
   xhr2.send();
@@ -100,14 +111,14 @@ function renderPokemon(entry) {
 
       $pokemonGroup2.appendChild($addStar);
 
-      var $extraInfo2 = document.createElement('i');
-      $extraInfo2.setAttribute('class', 'fa-sharp fa-solid fa-circle-info info-circle');
-      $pokemonGroup2.appendChild($extraInfo2);
-
       var $newImage2 = document.createElement('img');
       $newImage2.setAttribute('class', 'new-image');
       $newImage2.setAttribute('src', entry[h].pkmnimage);
       $pokemonGroup2.appendChild($newImage2);
+
+      var $extraInfo2 = document.createElement('i');
+      $extraInfo2.setAttribute('class', 'fa-sharp fa-solid fa-circle-info info-circle');
+      $pokemonGroup2.appendChild($extraInfo2);
 
       var $abilitiesTitle2 = document.createElement('p');
       $abilitiesTitle2.setAttribute('class', 'ability-title');
@@ -194,14 +205,14 @@ function renderPokemon(entry) {
       }
       $pokemonGroup.appendChild($addStar2);
 
-      var $extraInfo = document.createElement('i');
-      $extraInfo.setAttribute('class', 'fa-sharp fa-solid fa-circle-info info-circle');
-      $pokemonGroup.appendChild($extraInfo);
-
       var $newImage = document.createElement('img');
       $newImage.setAttribute('class', 'new-image');
       $newImage.setAttribute('src', entry[h].pkmnimage);
       $pokemonGroup.appendChild($newImage);
+
+      var $extraInfo = document.createElement('i');
+      $extraInfo.setAttribute('class', 'fa-sharp fa-solid fa-circle-info info-circle');
+      $pokemonGroup.appendChild($extraInfo);
 
       var $abilitiesTitle = document.createElement('p');
       $abilitiesTitle.setAttribute('class', 'ability-title');
@@ -302,6 +313,8 @@ partyButton.addEventListener('click', function (event) {
     $partyNone.classList.remove('hidden');
   }
 });
+var $moreInfo = document.querySelector('.more-info');
+var $backgroundInfo = document.querySelector('.background-info');
 
 document.addEventListener('click', function (event) {
   if (event.target.className === 'fa-solid fa-minus fa-2x remove-image-icon') {
@@ -326,17 +339,27 @@ document.addEventListener('click', function (event) {
       }
     }
     event.target.setAttribute('class', 'fa-regular fa-star star-icon');
-  } else if (event.target.className === 'fa-sharp fa-solid fa-circle-info info-circle') {
+  }
+});
+
+document.addEventListener('click', function (event) {
+  if (event.target.className === 'fa-sharp fa-solid fa-circle-info info-circle') {
     var starItem3 = event.target.closest('div').firstChild.innerHTML;
     for (var k = 0; k < data.entries.length; k++) {
       if (data.entries[k].species.name === starItem3) {
-        var $moreInfo = document.querySelector('.more-info');
         $moreInfo.classList.remove('hidden');
-        var $backgroundInfo = document.querySelector('.background-info');
+
+        var $infoTitle = document.createElement('h3');
+        $infoTitle.setAttribute('class', 'info-title');
+        $infoTitle.textContent = data.entries[k].forms[0].name;
+        $backgroundInfo.appendChild($infoTitle);
         var $infoStats = document.createElement('p');
         $infoStats.setAttribute('class', 'info-stats');
         $infoStats.textContent = 'Base Stats';
         $backgroundInfo.appendChild($infoStats);
+        var $hideButton = document.createElement('i');
+        $hideButton.setAttribute('class', 'fa-solid fa-x remove-button');
+        $backgroundInfo.appendChild($hideButton);
         var $statHolder = document.createElement('div');
         $statHolder.setAttribute('class', 'stat-holder');
         for (var l = 0; l < data.entries[k].stats.length; l++) {
@@ -356,6 +379,9 @@ document.addEventListener('click', function (event) {
         $backgroundInfo.appendChild($statHolder);
       }
     }
+  } else if (event.target.className === 'fa-solid fa-x remove-button') {
+    $moreInfo.classList.add('hidden');
+    $backgroundInfo.replaceChildren();
   }
 });
 
