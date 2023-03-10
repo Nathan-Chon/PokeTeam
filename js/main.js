@@ -340,14 +340,17 @@ document.addEventListener('click', function (event) {
         var $statHolder = document.createElement('div');
         $statHolder.setAttribute('class', 'stat-holder');
         for (var l = 0; l < data.entries[k].stats.length; l++) {
+          var $stat = document.createElement('div');
+          $stat.setAttribute('class', 'stat');
           var $statType = document.createElement('div');
           $statType.setAttribute('class', 'stat-type');
           var $value = document.createElement('div');
           $value.setAttribute('class', 'value-type');
           $statType.textContent = data.entries[k].stats[l].stat.name;
           $value.textContent = data.entries[k].stats[l].base_stat;
-          $statHolder.appendChild($statType);
-          $statHolder.appendChild($value);
+          $stat.appendChild($statType);
+          $stat.appendChild($value);
+          $statHolder.appendChild($stat);
 
         }
         $backgroundInfo.appendChild($statHolder);

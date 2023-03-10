@@ -298,3 +298,8 @@ input {
   border-radius: 5px;
   z-index: 1000;
 }
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+}
