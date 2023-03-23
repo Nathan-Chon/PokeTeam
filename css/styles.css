@@ -8,7 +8,6 @@ body {
   width: 100%;
 }
 
-/* Nav Bar */
 header {
   background-color: #f04037;
   width: 100%;
@@ -55,10 +54,13 @@ header {
   cursor: pointer;
 }
 
-/* Search Page */
 .search-icon {
   margin-left: 5px;
   color: #6c757d;
+}
+
+.search-icon:hover {
+  cursor: pointer;
 }
 
 .search-title {
@@ -85,7 +87,7 @@ input {
 .search-add-member {
   background-color: #fbd2d0;
   height: 100%;
-  width: 60%;
+  width: 75%;
   margin: 5rem auto;
   border-radius: 20px;
   position: relative;
@@ -123,8 +125,6 @@ input {
   border-radius: 5px;
   padding: 5px;
 }
-
-/* Party Page */
 
 .party-title {
   margin-top: 5rem;
@@ -181,6 +181,10 @@ input {
   position: absolute;
   top: 90px;
   right: 80px;
+}
+
+.star-icon:hover {
+  cursor: pointer;
 }
 
 .new-image {
@@ -286,6 +290,10 @@ input {
   left: 50px;
 }
 
+.info-circle:hover {
+  cursor: pointer;
+}
+
 .background-info {
   position: fixed;
   top: 50%;
@@ -322,4 +330,8 @@ input {
 .invalid-search {
   text-align: center;
   margin-top: 8rem;
+}
+
+.remove-button:hover {
+  cursor: pointer;
 }
