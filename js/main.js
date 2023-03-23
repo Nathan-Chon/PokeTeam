@@ -12,23 +12,25 @@ search.addEventListener('click', function (event) {
   event.preventDefault();
   var xhr = new XMLHttpRequest();
   var input = searchInput.value;
-  xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + input);
-  xhr.responseType = 'json';
+  if (input !== '') {
+    xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/' + input);
+    xhr.responseType = 'json';
 
-  xhr.addEventListener('load', function () {
-    dataResponse = xhr.response;
-    if (xhr.status === 200) {
-      $imageName.replaceChildren();
-      $invalidSearch.classList.add('hidden');
-      $searchAddMember.classList.remove('hidden');
-      pokemonAdd(xhr.response);
-      searchInput.value = '';
-    } else {
-      $imageName.replaceChildren();
-      $invalidSearch.classList.remove('hidden');
-      searchInput.value = '';
-    }
-  });
+    xhr.addEventListener('load', function () {
+      dataResponse = xhr.response;
+      if (xhr.status === 200) {
+        $imageName.replaceChildren();
+        $invalidSearch.classList.add('hidden');
+        $searchAddMember.classList.remove('hidden');
+        pokemonAdd(xhr.response);
+        searchInput.value = '';
+      } else {
+        $imageName.replaceChildren();
+        $invalidSearch.classList.remove('hidden');
+        searchInput.value = '';
+      }
+    });
+  }
   xhr.send();
 });
 
@@ -326,8 +328,14 @@ document.addEventListener('click', function (event) {
     var starItem = event.target.closest('div').firstChild.innerHTML;
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].species.name === starItem) {
-        event.target.nextSibling.setAttribute('src', data.entries[i].sprites.front_shiny);
-        data.entries[i].pkmnimage = data.entries[i].sprites.front_shiny;
+        if (data.entries[i].sprites.front_shiny !== null) {
+          event.target.nextSibling.setAttribute('src', data.entries[i].sprites.front_shiny);
+          data.entries[i].pkmnimage = data.entries[i].sprites.front_shiny;
+        } else {
+          event.target.nextSibling.setAttribute('src', data.entries[i].sprites.front_shiny);
+          event.target.nextSibling.setAttribute('alt', 'There is no Current Shiny for this Pokemon');
+          data.entries[i].pkmnimage = data.entries[i].sprites.front_shiny;
+        }
       }
     }
     event.target.setAttribute('class', 'fa-solid fa-star star-icon');
