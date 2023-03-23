@@ -24,6 +24,7 @@ search.addEventListener('click', function (event) {
       pokemonAdd(xhr.response);
       searchInput.value = '';
     } else {
+      $imageName.replaceChildren();
       $invalidSearch.classList.remove('hidden');
       searchInput.value = '';
     }
