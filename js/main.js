@@ -18,7 +18,7 @@ search.addEventListener('click', function (event) {
 
     xhr.addEventListener('load', function () {
       dataResponse = xhr.response;
-      if (xhr.status === 200) {
+      if (xhr.status >= 200 || xhr.status <= 299) {
         $imageName.replaceChildren();
         $invalidSearch.classList.add('hidden');
         $searchAddMember.classList.remove('hidden');
